@@ -39,7 +39,7 @@ module.exports = {
     },
     recorridoId:{
       model:'Recorrido',
-    }
+    },
     conductorId:{
       model:'Conductor',
     }

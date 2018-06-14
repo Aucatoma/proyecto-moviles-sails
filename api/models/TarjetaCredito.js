@@ -15,7 +15,7 @@ module.exports = {
     recorridos:{
       collection:'Recorrido',
       via:'recorridoId',
-    }
+    },
 
     clienteId:{
       model:'Cliente',
