@@ -14,6 +14,11 @@ module.exports = {
     nombreUsuario: { type: 'string', required: true },
     contraseniaUsuario: { type: 'string', required: true },
     correoUsuario: { type: 'string', required: true },
+
+    tarjetasDeCredito:{
+      collection:'TarjetaCredito',
+      via:'clienteId',
+    }
   },
 
 };

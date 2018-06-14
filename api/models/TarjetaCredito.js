@@ -17,6 +17,11 @@ module.exports = {
       via:'recorridoId',
     }
 
+    clienteId:{
+      model:'Cliente',
+    }
+
+
 
   },
 
