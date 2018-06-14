@@ -15,6 +15,11 @@ module.exports = {
     contraseniaUsuario: { type: 'string', required: true },
     correoUsuario: { type: 'string', required: true },
   },
+  recorridos:{
+    collection:'Recorrido',
+    via:'conductorId',
+  }
+
 
 };
 
