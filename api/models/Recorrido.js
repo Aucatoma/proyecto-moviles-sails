@@ -37,6 +37,9 @@ module.exports = {
       type:'number',
       requiered:true
     },
+    recorridoId:{
+      model:'Recorrido',
+    }
 
 
 

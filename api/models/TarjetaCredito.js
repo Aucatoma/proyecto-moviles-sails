@@ -11,8 +11,11 @@ module.exports = {
     numeroTarjeta: { type: 'string', required: true },
     codigoSeguridad: { type: 'string', required: true},
     mesTarjeta: { type: 'number', required: true },
-    anioTarjeta: { type: 'number', required: true }
-    recorridos:
+    anioTarjeta: { type: 'number', required: true },
+    recorridos:{
+      collection:'Recorrido',
+      via:'recorridoId',
+    }
 
 
   },
