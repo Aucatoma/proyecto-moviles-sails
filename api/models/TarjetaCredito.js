@@ -12,6 +12,8 @@ module.exports = {
     codigoSeguridad: { type: 'string', required: true},
     mesTarjeta: { type: 'number', required: true },
     anioTarjeta: { type: 'number', required: true }
+    recorridos:
+
 
   },
 
