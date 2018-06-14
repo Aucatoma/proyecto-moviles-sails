@@ -1,5 +1,5 @@
 /**
- * Usuario.js
+ * Conductor.js
  *
  * @description :: A model definition.  Represents a database table/collection/etc.
  * @docs        :: https://sailsjs.com/docs/concepts/models-and-orm/models
@@ -14,7 +14,6 @@ module.exports = {
     nombreUsuario: { type: 'string', required: true },
     contraseniaUsuario: { type: 'string', required: true },
     correoUsuario: { type: 'string', required: true },
-    rolUsuario: { tyoe: 'string', isIn: ['cliente', 'conductor'], required: true }
   },
 
 };
