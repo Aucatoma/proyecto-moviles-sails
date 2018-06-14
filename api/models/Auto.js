@@ -10,8 +10,8 @@ module.exports = {
   attributes: {
 
     marcaAuto: {type: 'string', required: true },
-    modeloAuto: { type: 'string', required: true},
-    placaAuto: { type: 'string', required}
+    modeloAuto: { type: 'string', required: true },
+    placaAuto: { type: 'string', required: true }
   },
 
 };
