@@ -11,31 +11,31 @@ module.exports = {
 
     origenRecorrido:{
       type:'string',
-      requiered:true,
+      required:true,
     },
 
     destinoRecorrido:{
       type:'string',
-      requiered:true,
+      required:true,
     },
 
     distanciaRecorrido:{
       type:'number',
-      requiered: true,
+      required: true,
     },
 
     estadoRecorrido:{
       type:'boolean',
-      requiered:true,
+      required:true,
     },
 
     fechaRecorrido:{
       type:'string',
-      requiered:true
+      required:true
     },
     valorRecorrido:{
       type:'number',
-      requiered:true
+      required:true
     },
     recorridoId:{
       model:'Recorrido',
