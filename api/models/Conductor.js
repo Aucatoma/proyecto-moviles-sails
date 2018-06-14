@@ -18,7 +18,12 @@ module.exports = {
   recorridos:{
     collection:'Recorrido',
     via:'conductorId',
+  },
+  autos:{
+    collection:'Auto',
+    via:'conductorId',
   }
+
 
 
 };

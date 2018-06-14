@@ -11,7 +11,11 @@ module.exports = {
 
     marcaAuto: {type: 'string', required: true },
     modeloAuto: { type: 'string', required: true },
-    placaAuto: { type: 'string', required: true }
+    placaAuto: { type: 'string', required: true },
+    conductorId:{
+      model:'Conductor',
+    }
+
 
   },
 
