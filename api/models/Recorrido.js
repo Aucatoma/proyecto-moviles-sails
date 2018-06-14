@@ -37,8 +37,8 @@ module.exports = {
       type:'number',
       required:true
     },
-    recorridoId:{
-      model:'Recorrido',
+    tarjetaCreditoId:{
+      model:'TarjetaCredito',
     },
     conductorId:{
       model:'Conductor',
