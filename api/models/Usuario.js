@@ -13,7 +13,8 @@ module.exports = {
     telefono: { type: 'string', required: true },
     nombreUsuario: { type: 'string', required: true },
     contraseniaUsuario: { type: 'string', required: true },
-    correoUsuario: { type: 'string', required: true }
+    correoUsuario: { type: 'string', required: true },
+    rolUsuario: { tyoe: 'string', isIn: ['cliente', 'conductor'], required: true }
   },
 
 };
