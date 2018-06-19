@@ -22,7 +22,10 @@ module.exports = {
   autos:{
     collection:'Auto',
     via:'conductorId',
-  }
+  },
+  fotoId:{
+    model:'Foto'
+  },
 
 
 

@@ -18,7 +18,13 @@ module.exports = {
     tarjetasDeCredito:{
       collection:'TarjetaCredito',
       via:'clienteId',
+    },
+
+    fotoId:{
+      model:'Foto',
     }
+
+
   },
 
 };
