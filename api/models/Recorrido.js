@@ -9,13 +9,22 @@ module.exports = {
 
   attributes: {
 
-    origenRecorrido:{
+    origenLatitud:{
+      type:'string',
+      required:true,
+    },
+    origenLongitud:{
       type:'string',
       required:true,
     },
 
-    destinoRecorrido:{
+    destinoLatitud:{
       type:'string',
+      required:true,
+    },
+
+    destinoLongitud:{
+      type:'stirng',
       required:true,
     },
 
