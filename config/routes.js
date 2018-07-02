@@ -28,6 +28,9 @@ module.exports.routes = {
     view: 'pages/homepage'
   },
 
+  '/cliente/login': 'ClienteController.login',
+  '/cliente/registrar': 'ClienteController.registrar'
+
   /***************************************************************************
   *                                                                          *
   * More custom routes here...                                               *

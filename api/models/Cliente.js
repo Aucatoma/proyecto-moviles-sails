@@ -11,16 +11,17 @@ module.exports = {
     nombre: { type: 'string', required: true },
     apellido: { type: 'string', required: true },
     telefono: { type: 'string', required: true },
-    nombreUsuario: { type: 'string', required: true },
+    nombreUsuario: { type: 'string', required: true, unique: true },
     contraseniaUsuario: { type: 'string', required: true },
     correoUsuario: { type: 'string', required: true },
+    personId: { type: 'string' },
 
     tarjetasDeCredito:{
       collection:'TarjetaCredito',
       via:'clienteId',
     },
 
-    fotoId:{
+    foto:{
       model:'Foto',
     }
 

@@ -49,6 +49,16 @@ module.exports.http = {
     *                                                                          *
     ***************************************************************************/
 
+    bodyParser: (function () {
+      var opts = {limit:'50mb'};
+      var fn;
+
+      // Default to built-in bodyParser:
+      fn = require('skipper');
+      return fn(opts);
+
+    })(),
+
     // bodyParser: (function _configureBodyParser(){
     //   var skipper = require('skipper');
     //   var middlewareFn = skipper({ strict: true });
