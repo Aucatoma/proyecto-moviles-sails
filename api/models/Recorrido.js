@@ -24,7 +24,7 @@ module.exports = {
     },
 
     destinoLongitud:{
-      type:'stirng',
+      type:'string',
       required:true,
     },
 
