@@ -10,30 +10,65 @@ const fs = require('fs');
 module.exports = {
 
 
-  login: async function(req, res){
+  authentication: async function(req, res){
 
+    /* Conversión de datos de http body a JSON */
+    const datosRecv = JSON.parse(JSON.stringify(req.body));
 
-    const datosRecibidos = JSON.parse(JSON.stringify(req.body));
-    const username = datosRecibidos.username;
-    const foto = datosRecibidos.foto;
-    console.log(username);
+    /* Se obtiene usuario y foto/password por separado */
+    const usernameRecv = datosRecv.username;
+    const fotoRecv = datosRecv.foto;
+    const passwordRecv = datosRecv.password;
 
-    const faceIdResponse = await sails.helpers.faceDetect.with({ data: foto, returnFaceId: 'true', returnFaceLandmarks: 'false'});
-    const faceIdText = JSON.parse(faceIdResponse)[0].faceId;
-    console.log(faceIdText);
+    if(passwordRecv === undefined){
 
-    const clientText = await Cliente.find({nombreUsuario: username});
-    const personIdVerify = JSON.parse(JSON.stringify(clientText))[0].personId;
-    console.log(personIdVerify);
-    const respuestaVerify = await sails.helpers.faceVerify.with({ faceId: faceIdText, personGroupId: 'clientes', personId: personIdVerify });
-    console.log(respuestaVerify);
+      /* Face detect de la foto enviada, se obtiene el faceId */
+      const faceIdResponse = await sails.helpers.faceDetect.with({ data: fotoRecv, returnFaceId: 'true', returnFaceLandmarks: 'false'});
+      const faceIdRecv = JSON.parse(faceIdResponse)[0].faceId;
 
-    res.send(respuestaVerify);
+      console.log(faceIdRecv);
+
+      /* Query del cliente que contiene el usuario recibido para obtener personId */
+      const clientQueryRes = await Cliente.findOne({nombreUsuario: usernameRecv});
+      const personIdQueryRes = clientQueryRes.personId;
+      console.log(personIdQueryRes);
+
+      /* Verificación del usuario con los datos enviados realizando faceVerify */
+      const respuestaVerify = await sails.helpers.faceVerify.with({ faceId: faceIdRecv, personGroupId: 'clientes', personId: personIdQueryRes });
+      const isIdentical = JSON.parse(respuestaVerify).isIdentical;
+      console.log(respuestaVerify);
+
+      if(isIdentical){
+        const data2Send = await sails.helpers.dataToSend.with({cliente: passwordQueryRes});
+        res.ok(data2Send);
+      }else{
+        res.notFound();
+      }
+    }else{
+      const passwordQueryRes = await Cliente.findOne({ contraseniaUsuario: passwordRecv});
+      if(!passwordQueryRes){
+        res.notFound();
+      }else{
+        const data2Send = await sails.helpers.dataToSend.with({cliente: passwordQueryRes});
+        res.ok(data2Send);
+      }
+    }
+
+  },
+
+  verify: async function(req, res){
+    const usernameRec = JSON.parse(JSON.stringify(req.body)).username;
+    const userVerification = await Cliente.find({nombreUsuario: usernameRec});
+    if(!userVerification){
+      res.notFound();
+    }
+    else{
+      console.log(userVerification);
+      res.ok();
+    }
   },
 
   registrar: async function(req, res){
-
-
 
     const datosRecibidos = JSON.parse(JSON.stringify(req.body));
     const cliente =  datosRecibidos.cliente;

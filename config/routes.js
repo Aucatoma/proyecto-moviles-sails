@@ -28,8 +28,9 @@ module.exports.routes = {
     view: 'pages/homepage'
   },
 
-  '/cliente/login': 'ClienteController.login',
-  '/cliente/registrar': 'ClienteController.registrar'
+  '/cliente/authentication': 'ClienteController.authentication',
+  '/cliente/registrar': 'ClienteController.registrar',
+  '/cliente/verify': 'ClienteController.verify'
 
   /***************************************************************************
   *                                                                          *
