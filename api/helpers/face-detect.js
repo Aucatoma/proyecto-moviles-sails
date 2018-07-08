@@ -43,7 +43,7 @@ module.exports = {
     const uriBase = 'https://southcentralus.api.cognitive.microsoft.com/face/v1.0/detect';
     let jsonResponse = "";
     const buffer = Buffer.from(inputs.data, 'base64');
-    fs.writeFile("assets/images/image.jpg", buffer, (err) => {
+    fs.writeFile("assets/images/imageDetected.jpg", buffer, (err) => {
       if(err){
 
       }else{
@@ -55,7 +55,7 @@ module.exports = {
       //'returnFaceLandmarks': `${inputs.returnFaceLandmarks}`,
       //'returnFaceAttributes': `${inputs.returnFaceAttributes}`
     };
-    console.log(params);
+
     const options = {
       uri: uriBase,
       qs: params,

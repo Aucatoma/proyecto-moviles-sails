@@ -39,7 +39,7 @@ module.exports = {
     const uriBase = `https://southcentralus.api.cognitive.microsoft.com/face/v1.0/persongroups/${inputs.personGroupId}/persons/${inputs.personId}/persistedFaces`;
     const buffer = Buffer.from(inputs.data, 'base64');
 
-    fs.writeFile("assets/images/image.jpg", buffer, (err) => {
+    fs.writeFile("assets/images/imageAdded.jpg", buffer, (err) => {
       if(err){
 
       }else{

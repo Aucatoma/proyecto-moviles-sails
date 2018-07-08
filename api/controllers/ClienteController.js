@@ -21,6 +21,7 @@ module.exports = {
     const passwordRecv = datosRecv.password;
 
     if(passwordRecv === undefined){
+      console.log("Login con cara");
 
       /* Face detect de la foto enviada, se obtiene el faceId */
       const faceIdResponse = await sails.helpers.faceDetect.with({ data: fotoRecv, returnFaceId: 'true', returnFaceLandmarks: 'false'});
@@ -43,6 +44,7 @@ module.exports = {
         res.notFound();
       }
     }else{
+      console.log("Login con pw");
       const passwordQueryRes = await Cliente.findOne({ contraseniaUsuario: passwordRecv});
       if(!passwordQueryRes){
         res.notFound();
@@ -61,7 +63,6 @@ module.exports = {
       res.notFound();
     }
     else{
-      console.log(userVerification);
       res.ok();
     }
   },

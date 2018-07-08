@@ -54,7 +54,6 @@ module.exports = {
         return;
       }
       jsonResponse = JSON.stringify(JSON.parse(body), null, ' ');
-      console.log(jsonResponse);
       return exits.success(jsonResponse);
     });
     // All done.
