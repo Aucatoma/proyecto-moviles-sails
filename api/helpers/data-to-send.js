@@ -31,14 +31,22 @@ module.exports = {
       tarjetaCredito['recorridos'] = await Recorrido.find({tarjetaCreditoId:tarjetaCredito.id});
       return tarjetaCredito;
     }));
-    const tarjetasConConductor = await Promise.all(tarjetas.recorridos.map(async (recorrido) => {
-      recorrido.conductorId = await Conductor.find({id: recorrido.conductorId});
-      return recorrido;
+
+
+    const tarjetasConConductor = await Promise.all(tarjetas.map( async (tarjetaDeCredito) => {
+      tarjetaDeCredito.recorridos = await Promise.all(tarjetaDeCredito.recorridos.map(async (recorrido)=> {
+        recorrido.conductor = await Conductor.findOne({ id: recorrido.conductorId });
+        return recorrido;
+      }));
+      console.log(tarjetaDeCredito.recorridos);
+      return tarjetaDeCredito;
     }));
 
-    tarjetas.recorridos = tarjetasConConductor;
+    console.log(JSON.stringify(tarjetasConConductor));
+
+
     cliente.foto = foto;
-    cliente.tarjetasDeCredito = tarjetas;
+    cliente.tarjetasDeCredito = tarjetasConConductor;
     cliente.jwt = jwt;
 
     return exits.success(inputs.cliente);
