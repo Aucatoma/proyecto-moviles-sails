@@ -26,12 +26,10 @@ module.exports = {
       const faceIdResponse = await sails.helpers.faceDetect.with({ data: fotoRecv, returnFaceId: 'true', returnFaceLandmarks: 'false'});
       const faceIdRecv = JSON.parse(faceIdResponse)[0].faceId;
 
-      console.log(faceIdRecv);
 
       /* Query del cliente que contiene el usuario recibido para obtener personId */
       const clientQueryRes = await Cliente.findOne({nombreUsuario: usernameRecv});
       const personIdQueryRes = clientQueryRes.personId;
-      console.log(personIdQueryRes);
 
       /* Verificación del usuario con los datos enviados realizando faceVerify */
       const respuestaVerify = await sails.helpers.faceVerify.with({ faceId: faceIdRecv, personGroupId: 'clientes', personId: personIdQueryRes });
@@ -39,7 +37,7 @@ module.exports = {
       console.log(respuestaVerify);
 
       if(isIdentical){
-        const data2Send = await sails.helpers.dataToSend.with({cliente: passwordQueryRes});
+        const data2Send = await sails.helpers.dataToSend.with({cliente: clientQueryRes});
         res.ok(data2Send);
       }else{
         res.notFound();

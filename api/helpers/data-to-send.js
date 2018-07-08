@@ -38,12 +38,8 @@ module.exports = {
         recorrido.conductor = await Conductor.findOne({ id: recorrido.conductorId });
         return recorrido;
       }));
-      console.log(tarjetaDeCredito.recorridos);
       return tarjetaDeCredito;
     }));
-
-    console.log(JSON.stringify(tarjetasConConductor));
-
 
     cliente.foto = foto;
     cliente.tarjetasDeCredito = tarjetasConConductor;
