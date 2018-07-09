@@ -58,7 +58,7 @@ module.exports = {
 
   verify: async function(req, res){
     const usernameRec = JSON.parse(JSON.stringify(req.body)).username;
-    const userVerification = await Cliente.findOne({nombreUsuario: usernameRec});
+    const userVerification = await Cliente.findOne({nombreUsuario: usernameRec}); //
     console.log(userVerification);
     if(!userVerification){
       res.notFound();
