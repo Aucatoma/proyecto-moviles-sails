@@ -45,7 +45,7 @@ module.exports = {
       }
     }else{
       console.log("Login con pw");
-      const passwordQueryRes = await Cliente.findOne({ contraseniaUsuario: passwordRecv});
+      const passwordQueryRes = await Cliente.findOne({ contraseniaUsuario: passwordRecv, nombreUsuario: usernameRecv});
       if(!passwordQueryRes){
         res.notFound();
       }else{
@@ -58,7 +58,8 @@ module.exports = {
 
   verify: async function(req, res){
     const usernameRec = JSON.parse(JSON.stringify(req.body)).username;
-    const userVerification = await Cliente.find({nombreUsuario: usernameRec});
+    const userVerification = await Cliente.findOne({nombreUsuario: usernameRec});
+    console.log(userVerification);
     if(!userVerification){
       res.notFound();
     }
@@ -85,11 +86,15 @@ module.exports = {
     const personIdRes = JSON.parse(respuestaPersonId).personId;
 
     const respuestaUpdate = await Cliente.update({id: respuestaCliente.id}).set({personId: personIdRes}).fetch();
-    console.log(respuestaUpdate.id);
 
 
     const addFace = await sails.helpers.addPersonFace.with({ personGroupId: 'clientes', personId: personIdRes, data: respuestaFoto.datos});
-    res.ok(addFace);
+
+
+
+    console.log(addFace);
+
+    res.ok();
 
   }
 
