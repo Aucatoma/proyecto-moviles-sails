@@ -8,6 +8,7 @@
 module.exports = {
 
   attributes: {
+    companiaTarjeta: {type: 'string'},
     numeroTarjeta: { type: 'string', required: true },
     codigoSeguridad: { type: 'string', required: true},
     mesTarjeta: { type: 'number', required: true },
@@ -18,7 +19,6 @@ module.exports = {
       collection:'Recorrido',
       via:'tarjetaCreditoId',
     },
-
 
 
     clienteId:{

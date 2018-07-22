@@ -59,7 +59,6 @@ module.exports = {
   verify: async function(req, res){
     const usernameRec = JSON.parse(JSON.stringify(req.body)).username;
     const userVerification = await Cliente.findOne({nombreUsuario: usernameRec}); //
-    console.log(userVerification);
     if(!userVerification){
       res.notFound();
     }
@@ -73,12 +72,19 @@ module.exports = {
     const datosRecibidos = JSON.parse(JSON.stringify(req.body));
     const cliente =  datosRecibidos.cliente;
     const foto = datosRecibidos.foto;
-
-    const respuestaCliente = await Cliente.create(cliente).fetch();
+    const tarjetaCredito = datosRecibidos.tarjetaCredito;
 
     const respuestaFoto = await Foto.create(foto).fetch();
 
-    const updateCliente = await Cliente.update({id: respuestaCliente.id}).set({foto: respuestaFoto.id}).fetch();
+    cliente.foto = respuestaFoto.id;
+
+    const respuestaCliente = await Cliente.create(cliente).fetch();
+
+    tarjetaCredito.clienteId = respuestaCliente.id;
+
+    const respuestaTarjeta = await TarjetaCredito.create(tarjetaCredito).fetch();
+
+    /*const updateCliente = await Cliente.update({id: respuestaCliente.id}).set({foto: respuestaFoto.id}).fetch();*/
 
 
     const respuestaPersonId = await sails.helpers.createPerson.with({ personGroupId:'clientes', username:respuestaCliente.nombreUsuario });
@@ -89,8 +95,6 @@ module.exports = {
 
 
     const addFace = await sails.helpers.addPersonFace.with({ personGroupId: 'clientes', personId: personIdRes, data: respuestaFoto.datos});
-
-
 
     console.log(addFace);
 
