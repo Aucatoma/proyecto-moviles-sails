@@ -49,6 +49,7 @@ module.exports = {
       if(!passwordQueryRes){
         res.notFound();
       }else{
+
         const data2Send = await sails.helpers.dataToSend.with({cliente: passwordQueryRes});
         res.ok(data2Send);
       }

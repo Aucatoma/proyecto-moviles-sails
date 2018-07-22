@@ -32,6 +32,8 @@ module.exports = {
       return tarjetaCredito;
     }));
 
+    console.log(tarjetas);
+
 
     const tarjetasConConductor = await Promise.all(tarjetas.map( async (tarjetaDeCredito) => {
       tarjetaDeCredito.recorridos = await Promise.all(tarjetaDeCredito.recorridos.map(async (recorrido)=> {
